@@ -1,0 +1,51 @@
+body{
+            background-image: url("../img/bkg1.png");
+            background-size: cover;
+        }
+        #main{
+            margin: 20px 28% 0;
+            border: #212529 solid 20px;
+            height: 560px;
+        }
+        .square{
+            width: 70px;
+            height: 70px;
+        }
+        .wht{
+            background-color: /*#F4CFA4*/ white;
+        }
+        .blk{
+            background-color: /*#42291A*/ black;
+        }
+        #r{
+            height: 70px;
+        }
+        sup{
+            color: #b02a37;
+            font-size: 16px;
+        }
+        sub{
+            position: relative;
+            top: 40px;
+            font-size: 16px;
+        }
+        .blk sub{
+            color: #ffbbaa;
+        }
+        .wht sub{
+            color: #323539;
+        }
+        span{
+            font-size: 20px;
+            color: #f0f0f0;
+        }
+        .pl2{
+            margin-left: 120px;
+            color: white;
+            background-color: black;
+        }
+        .pl1{
+            
+            color: black;
+            background-color: white;
+        }

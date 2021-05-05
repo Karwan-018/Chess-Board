@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam study</title>
+    <script src="js/vue.global.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+       
+</head>
+<body>
+    <div id="main" style="position: absolute">
+        <div v-for="i in 8" id="r" style="display: flex">
+            <div v-for="j in 8" >
+                <div v-if="(i+j) % 2 == 0" class="wht square" style=" float:left;">
+                    <sub v-if="i==8">{{file[j-1]}}</sub>
+                    <sup v-if="j==1" >{{rowCoordination[i-1]}}</sup>
+                </div>
+                <div v-else class="blk square" v-bind:id="i+'b'+j" style="float:left;">
+                    <sub v-if="i==8">{{file[j-1]}}</sub>
+                    <sup v-if="j==1">{{rowCoordination[i-1]}}</sup>
+                </div>
+            </div>
+<!--            <br>-->
+        </div>
+        <br>
+        <div style="position: relative; margin-top: 15px; display: inline-block">
+            <span class="pl1" style="grid-column: span">player 1</span> <input style="margin-left: 6px" type="color" @change="changeClrP1" id="p1c">
+            <button style="margin-left: 120px" v-on:click="arrayRev">Flip board</button>
+            <span class="pl2" >player 2</span> <input type="color" @change="changeClrP2" id="p2c">
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    const App = {
+        data() {
+            return {
+                rowCoordination: [8, 7, 6, 5, 4, 3, 2, 1],
+                file: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+            }
+        }
+        ,
+        methods: {
+            changeClrP1: function(){
+              var elms =  document.getElementsByClassName('wht');
+                for(var i = 0; i < elms.length; i++){
+                    elms[i].style.backgroundColor = document.getElementById('p1c').value;
+                }
+            },
+            changeClrP2: function () {
+                var elms =  document.getElementsByClassName('blk');
+                for(var i = 0; i < elms.length; i++){
+                    elms[i].style.backgroundColor = document.getElementById('p2c').value;
+                }
+            },
+            arrayRev: function () {
+                this.rowCoordination.reverse();
+                this.file.reverse();
+            }
+
+        }
+    }
+
+    Vue.createApp(App).mount('#main')
+</script>
