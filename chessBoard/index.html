@@ -8,19 +8,26 @@
        
 </head>
 <body>
+   <div style="position:absolute; margin: 0 42%; width: 200px">
+        <span style="color: #f0f0f0" id="cell"> no square clicked on</span>
+    </div>
+   <br>
+
     <div id="main" style="position: absolute">
+
         <div v-for="i in 8" id="r" style="display: flex">
             <div v-for="j in 8" >
-                <div v-if="(i+j) % 2 == 0" class="wht square" style=" float:left;">
+                <div v-if="(i+j) % 2 == 0" v-bind:id="file[j-1]+''+rowCoordination[i-1]" @click="clickCell(i,j)" class="wht square" style=" float:left;">
                     <sub v-if="i==8">{{file[j-1]}}</sub>
                     <sup v-if="j==1" >{{rowCoordination[i-1]}}</sup>
                 </div>
-                <div v-else class="blk square" v-bind:id="i+'b'+j" style="float:left;">
+
+                <div v-else class="blk square" v-bind:id="file[j-1]+''+rowCoordination[i-1]" @click="clickCell(i,j)" style="float:left;" >
                     <sub v-if="i==8">{{file[j-1]}}</sub>
                     <sup v-if="j==1">{{rowCoordination[i-1]}}</sup>
                 </div>
             </div>
-<!--            <br>-->
+
         </div>
         <br>
         <div style="position: relative; margin-top: 15px; display: inline-block">
@@ -37,7 +44,8 @@
         data() {
             return {
                 rowCoordination: [8, 7, 6, 5, 4, 3, 2, 1],
-                file: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+                file: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'],
+                nid: this.id
             }
         }
         ,
@@ -57,10 +65,14 @@
             arrayRev: function () {
                 this.rowCoordination.reverse();
                 this.file.reverse();
+            },
+            clickCell(r, c){
+                var cellId = this.file[c-1]+''+ this.rowCoordination[r-1] ;
+                document.getElementById('cell').innerHTML = "you clicked on '"+ cellId + "'";
             }
 
         }
     }
 
-    Vue.createApp(App).mount('#main')
+    Vue.createApp(App).mount('#main');
 </script>
